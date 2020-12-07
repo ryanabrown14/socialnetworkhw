@@ -8,6 +8,7 @@
 - [Licence](#Licence)
 - [Repository](#Repository)
 - [GitHub Info](#GitHub)
+- [Issues](#Issues)
 
 ## Description
 
@@ -33,3 +34,7 @@ This Project is a backend Restful API for a socialmedia site.  It allows you to 
 
   ryanabrown14
   If you have any questions please contatact https://github.com/ryanabrown14 
+
+## Issues
+
+I could not get the add friend to work at all.  also when creating a thought it says user not found, I am not sure why it does that.  The thought is created either way.
