@@ -18,7 +18,7 @@ const userController = {
         .select('-__v')
         .then(dbUserData => {
             if(!dbUserData){
-                res.sendStatus(404);
+                res.status(404).json({message: 'No user found with this id'});
                 return;
             }
             res.json(dbUserData);
@@ -60,6 +60,41 @@ const userController = {
             res.sendStatus(err);
         });
     },
+    addFriend({params}, res) {
+        User.findOneAndUpdate(
+            {_id: params.userId},
+            {$push: {friends: params.friendId}},
+            {new:true}
+
+        )
+        .then((dbUserData) => {
+            if(!dbUserData){
+                res.status(404).json({message: 'No User Found'});
+                return;
+            }
+            res.json(dbUserData);
+
+        }).catch((err) =>{
+            console.log(err);
+            res.sendStatus(400);
+        });
+    },
+
+    deleteFriend({params}, res) {
+        User.findByIdAndUpdate(
+            {_id: params.userId},
+            {$pull: {friends: params.friendId}},
+            {new:true}
+        ).then((dbUserData) => {
+            if(!dbUserData){
+                return res.status(404).json({message:'No User Found'});
+            }
+            res.json(dbUserData);
+        }).catch((err) => {
+            console.log(err)
+            res.sendStatus(400);
+        })
+    }
     
 
 
